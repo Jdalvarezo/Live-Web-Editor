@@ -6,11 +6,23 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval'">
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval'">
     <title>Live Web Editor</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/all.min.css">
     <!-- Custom styles -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Live Web Editor</h1>
+    <nav>
+        <i class="fas fa-code"></i>
+        <span>Live Web Editor</span>
+        <div class="dropdown">
+            <p id="dropdown" title="Save content as"><i class="far fa-save"></i>Save As</p>
+            <div class="dropdown-content">
+                <p id="oneFile">One file</p>
+                <p id="IndFiles">Independent files</p>
+            </div>
+        </div>
+    </nav>
     <!-- You can also require other files to run in this process -->
     <script src="js/editor.js"></script>
 </body>

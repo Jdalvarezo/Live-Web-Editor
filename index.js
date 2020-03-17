@@ -6,6 +6,8 @@ function createWindow () {
   const mainWindow = new BrowserWindow({
     width: 1366,
     height: 768,
+    minWidth: 800,
+    minHeight: 600,
     webPreferences: {
       nodeIntegration: true
     }
@@ -17,8 +19,6 @@ function createWindow () {
   mainWindow.setMenu(null)
   // disable application resize
   // mainWindow.resizable = false
-  // maximize the application window
-  // mainWindow.maximize();
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
