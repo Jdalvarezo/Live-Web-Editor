@@ -78,11 +78,6 @@ nav span {
     color: #C6F1F3;
 }
 
-.editorContainer {
-    width: 50%;
-    height: 100%;
-}
-
 .tab {
     overflow: hidden;
     border: 1px solid #ccc;
@@ -115,7 +110,7 @@ nav span {
     border-top: none;
 }
 
-#editorHTML {
+#editorHTML, #editorCSS, #editorJS {
     position: absolute;
     top: 100px;
     right: 0;
@@ -124,20 +119,13 @@ nav span {
     width: 50%;
 }
 
-#editorCSS {
+#viewer {
+    background-color: #FFF;;
     position: absolute;
-    top: 100px;
+    top: 14.1%;
     right: 0;
     bottom: 0;
-    left: 0;
+    left: 50%;
     width: 50%;
-}
-
-#editorJS {
-    position: absolute;
-    top: 100px;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 50%;
+    height: 85.9%;
 }
