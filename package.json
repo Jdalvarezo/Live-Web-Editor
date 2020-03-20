@@ -8,7 +8,7 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
-  "repository": "",
+  "repository": "https://github.com/Jdalvarezo/Live-Web-Editor.git",
   "keywords": [
     "editor",
     "web editor",
