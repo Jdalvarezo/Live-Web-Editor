@@ -14,103 +14,74 @@ dropdown.addEventListener("click", function() {
     }
 });
 
-// ================ Action save as one file/save as multiple files ========================
-
+// Variables for working with files and commands
 var fs = require('fs');
+const { exec } = require('child_process');
+
 // Getting the elements needed for manage the differents exportation ways
 var oneFile = document.getElementById('oneFile');
 var IndFiles = document.getElementById('IndFiles');
 
-// ============================= Save as one file =========================================
+// Function that shows the exported files
+function showOutput() {
+    exec('explorer.exe output', (error, stdout, stderr) => {
+        if (error) {
+            console.error(`exec error: ${error}`);
+            return;
+        }
+        console.log(`stdout: ${stdout}`);
+        console.error(`stderr: ${stderr}`);
+    });
+}
 
-oneFile.addEventListener("click", function() {
-    // Only one file exportation
-    fs.writeFile('output/index.html', content, function(err) {
+// Function that exports files
+function saveFile(fileName, ext, data) {
+    fs.writeFile('output/'+fileName+'.'+ext.toLowerCase(), data, function(err) {
         if(err) {
             fs.mkdir('output', function(e) {
                 if(!e || (e && e.code === 'EEXIST')){ 
-                    fs.writeFile('output/index.html', content, function(err) {
+                    fs.writeFile('output/'+fileName+'.'+ext.toLowerCase(), data, function(err) {
                         if(err) {
                             alert(err);
                         } else {
-                            alert('File saved successfully!');
+                            alert('File '+ext+' saved successfully!');
                         }
                     });
                 }
             });
         } else {
-            alert('File saved successfully!');
+            alert('File '+ext+' saved successfully!');
         }
     });
     // Hide the dropdown
     dropdown_content.style.display = "none";
+}
+
+// ============================= Save as one file =========================================
+
+oneFile.addEventListener("click", function() {
+    // HTML exportation
+    saveFile('index', 'HTML', content);
+    // We show the export result
+    setTimeout(showOutput, 2500);
 });
 
 // ============================= Save as multiple files =====================================
 
 IndFiles.addEventListener("click", function() {
     // Load the needed data for text file exportation
-    var part1 = editorHTML.getValue().substr(0, editorHTML.getValue().indexOf("</head>")-1);
-    var style = '\n\t<link rel="stylesheet" href="style.css">\n';
-    var part2 = editorHTML.getValue().substr(editorHTML.getValue().indexOf("</head>"), editorHTML.getValue().indexOf("</body>")-1);
-    var script = '\n\t<script src="script.js"></script>\n</body>\n</html>';
-    var todo = part1 + style + part2 + script;
+    var head = editorHTML.getValue().substr(0, editorHTML.getValue().indexOf("</head>")-1);
+    var style = '\n\t<link rel="stylesheet" href="style.css">\n</head>\n';
+    var script = '\t<script src="script.js"></script>\n</body>\n</html>';
+    var todo = head + style + html + script;
     // HTML exportation
-    fs.writeFile('output/index.html', todo, function(err) {
-        if(err) {
-            fs.mkdir('output', function(e) {
-                if(!e || (e && e.code === 'EEXIST')){ 
-                    fs.writeFile('output/index.html', todo, function(err) {
-                        if(err) {
-                            alert(err);
-                        } else {
-                            alert('File HTML saved successfully!');
-                        }
-                    });
-                }
-            });
-        } else {
-            alert('File HTML saved successfully!');
-        }
-    });
+    saveFile('index', 'HTML', todo);
     // CSS exportation
-    fs.writeFile('output/style.css', editorCSS.getValue(), function(err) {
-        if(err) {
-            fs.mkdir('output', function(e) {
-                if(!e || (e && e.code === 'EEXIST')){ 
-                    fs.writeFile('output/style.css', editorCSS.getValue(), function(err) {
-                        if(err) {
-                            alert(err);
-                        } else {
-                            alert('File CSS saved successfully!');
-                        }
-                    });
-                }
-            });
-        } else {
-            alert('File CSS saved successfully!');
-        }
-    });
+    saveFile('style', 'CSS', editorCSS.getValue());
     // JS exportation
-    fs.writeFile('output/script.js', editorJS.getValue(), function(err) {
-        if(err) {
-            fs.mkdir('output', function(e) {
-                if(!e || (e && e.code === 'EEXIST')){ 
-                    fs.writeFile('output/script.js', editorJS.getValue(), function(err) {
-                        if(err) {
-                            alert(err);
-                        } else {
-                            alert('File JS saved successfully!');
-                        }
-                    });
-                }
-            });
-        } else {
-            alert('File JS saved successfully!');
-        }
-    });
-    // Hide the dropdown
-    dropdown_content.style.display = "none";
+    saveFile('script', 'JS', editorJS.getValue());
+    // We show the export result
+    setTimeout(showOutput, 2500);
 });
 
 // ======================== Function: show editor by tabs ============================
@@ -195,6 +166,7 @@ document.getElementById('editorJS').style.fontSize='12px';
 
 viewer = document.getElementById("viewer");
 var content = "";
+var html = "";
 
 function type() {
     var ohead = "<!DOCTYPE html>\n<html>\n<head>\n\t<title>Page</title>\n<style>\n";
@@ -202,7 +174,7 @@ function type() {
     var chead = "\n</style>\n</head>\n";
     var bodyTag = editorHTML.getValue().indexOf("<body>");
     var bodyLines = editorHTML.getValue().substr(bodyTag);
-    var html = bodyLines.substr(0, bodyLines.length-15);
+    html = bodyLines.substr(0, bodyLines.length-15);
     var js = "<script>\n\t" + editorJS.getValue() + "\n</script>\n</body>\n</html>";
     content = ohead + css + chead + html + js;
     viewer.srcdoc = content;
