@@ -71,15 +71,33 @@ oneFile.addEventListener("click", function() {
 IndFiles.addEventListener("click", function() {
     // Load the needed data for text file exportation
     var head = editorHTML.getValue().substr(0, editorHTML.getValue().indexOf("</head>")-1);
-    var style = '\n\t<link rel="stylesheet" href="style.css">\n</head>\n';
-    var script = '\t<script src="script.js"></script>\n</body>\n</html>';
-    var todo = head + style + html + script;
+    var style = '\n\t<link rel="stylesheet" href="style.css">';
+    var chead = '\n</head>\n';
+    var script = '\t<script src="script.js"></script>\n';
+    var endDoc = '</body>\n</html>';
+    
+    var todo = head;
+    
+    // CSS exportation
+    if (editorCSS.getValue().length > 0) {
+        todo += style;
+        saveFile('style', 'CSS', editorCSS.getValue());
+    }
+
+    todo += chead;
+    todo += html;
+
+    // JS exportation
+    if (editorJS.getValue().length > 0) {
+        todo += script;
+        saveFile('script', 'JS', editorJS.getValue());
+    }
+
+    todo += endDoc;
+
     // HTML exportation
     saveFile('index', 'HTML', todo);
-    // CSS exportation
-    saveFile('style', 'CSS', editorCSS.getValue());
-    // JS exportation
-    saveFile('script', 'JS', editorJS.getValue());
+
     // We show the export result
     setTimeout(showOutput, 2500);
 });
@@ -87,7 +105,7 @@ IndFiles.addEventListener("click", function() {
 // ======================== Function: show editor by tabs ============================
 
 // Shows the editor mode according the selected option
-function showEditor(evt, cityName) {
+function showEditor(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -97,7 +115,7 @@ function showEditor(evt, cityName) {
     for (i = 0; i < tablinks.length; i++) {
       tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
 }
 
@@ -123,13 +141,6 @@ css.addEventListener("click", function(evt) {
 js.addEventListener("click", function(evt) {
     showEditor(evt, 'JS');
     editorJS.focus();
-});
-
-// Event for object window that load the HTML editor by default mode in the application
-window.addEventListener("load", function(evt) {
-    showEditor(evt, 'HTML');
-    html.className  += " active";
-    editorHTML.focus();
 });
 
 // ============================= Settings for each editor mode =====================================
@@ -169,14 +180,25 @@ var content = "";
 var html = "";
 
 function type() {
-    var ohead = "<!DOCTYPE html>\n<html>\n<head>\n\t<title>Page</title>\n<style>\n";
-    var css = editorCSS.getValue();
-    var chead = "\n</style>\n</head>\n";
+    var ohead = "<!DOCTYPE html>\n<html>\n<head>\n\t<title>Page</title>\n";
+    var css = "<style>\n" + editorCSS.getValue() + "\n</style>\n";
+    var chead = "</head>\n";
     var bodyTag = editorHTML.getValue().indexOf("<body>");
     var bodyLines = editorHTML.getValue().substr(bodyTag);
     html = bodyLines.substr(0, bodyLines.length-15);
-    var js = "<script>\n\t" + editorJS.getValue() + "\n</script>\n</body>\n</html>";
-    content = ohead + css + chead + html + js;
+    var js = "<script>\n" + editorJS.getValue() + "\n</script>\n";
+    var endDoc = "</body>\n</html>";
+    content = ohead;
+    if (css.length > 18) {
+        // console.log('css: '+css.length);
+        content += css;
+    }
+    content += chead + html;
+    if (js.length > 21) {
+        // console.log('js: '+js.length);
+        content += js;
+    }
+    content += endDoc;
     viewer.srcdoc = content;
     // console.log(bodyTag);
     // console.log(bodyLines.substr(0, bodyLines.length-15));
@@ -191,3 +213,4 @@ function typeJS(evt) {
 
 // Load the default content of the editor
 type();
+editorHTML.focus();

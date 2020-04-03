@@ -9,6 +9,7 @@ Its use is simple, since with each key that we press in the editor, it will be e
 * [Electron JS](https://www.electronjs.org/) - The cross-platform desktop applications framework used
 * [Font Awesome](https://fontawesome.com/) - Icon set and toolkit
 * [Google Fonts](https://fonts.google.com/) - Free interactive directory under the application that programs interfaces for web sources
+* [Flaticon](https://www.flaticon.com/) - The largest database of free icons available in PNG, SVG, EPS, PSD and BASE 64 formats
 
 ## Author ✒️
 
