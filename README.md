@@ -13,7 +13,7 @@ Its use is simple, since with each key that we press in the editor, it will be e
 
 ## Author ✒️
 
-* **Jhonatan Alvarez** - *The project developer* - [Jdalvarezo](https://github.com/Jdalvarezo)
+* **Jhonatan David Alvarez Ordosgoitia** - *The project developer* - [Jdalvarezo](https://github.com/Jdalvarezo)
 
 ## License 📄
 

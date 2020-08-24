@@ -1,4 +1,4 @@
-Copyright (c) 2020, Jhonatan Alvarez <jhonatand_alvarez@hotmail.com>
+Copyright (c) 2020, Jhonatan David Alvarez Ordosgoitia <jhonatand_alvarez@hotmail.com>
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above

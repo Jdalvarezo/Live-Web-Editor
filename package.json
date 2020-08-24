@@ -1,8 +1,8 @@
 {
   "name": "live-web-editor",
-  "version": "1.0.2",
-  "description": "Live web editor for HTML, CSS and JS",
-  "main": "index.js",
+  "version": "2.0.0",
+  "description": "A live web editor for HTML, CSS and JS. Developed with web technologies using the framework Electron JS",
+  "main": "main.js",
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
@@ -11,11 +11,13 @@
   "repository": "https://github.com/Jdalvarezo/Live-Web-Editor.git",
   "keywords": [
     "editor",
-    "web editor",
     "live web editor",
-    "HTML CSS JS"
+    "web technologies",
+    "desktop application",
+    "HTML CSS JS",
+    "electron JS"
   ],
-  "author": "Jhonatan Alvarez",
+  "author": "Jhonatan David Alvarez Ordosgoitia",
   "license": "ISC",
   "build": {
     "appId": "live-web-editor",
@@ -46,7 +48,7 @@
     }
   },
   "devDependencies": {
-    "electron": "^8.1.1",
-    "electron-builder": "^22.4.1"
+    "electron": "^9.2.1",
+    "electron-builder": "^22.8.0"
   }
 }
