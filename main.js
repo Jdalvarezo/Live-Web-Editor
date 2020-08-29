@@ -8,20 +8,26 @@ function createWindow () {
     height: 768,
     minWidth: 1024,
     minHeight: 768,
+    show: false,
     webPreferences: {
       nodeIntegration: true
     }
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile('view/editor/index.html')
   // remove application menu
   mainWindow.setMenu(null)
   // maximize the application window
   mainWindow.maximize();
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
+
+  // Displays the window once all components have loaded
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show()
+  })
 }
 
 // This method will be called when Electron has finished
