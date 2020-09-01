@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const { app, BrowserWindow, dialog } = require('electron')
 
 function createWindow () {
   
@@ -34,6 +34,29 @@ function createWindow () {
   mainWindow.webContents.on('new-window', (e, url) => {
     e.preventDefault()
     require('electron').shell.openExternal(url)
+  })
+
+  // Control the closing of the application
+  mainWindow.on('close', (evt) => {
+    
+    evt.preventDefault()
+
+    const options = {
+      type: 'question',
+      buttons: ['&Yes, please', '&No, thanks', '&Cancel'],
+      defaultId: 1,
+      title: 'Live Web Editor',
+      message: 'Do you want to close the application?',
+      detail: 'You may lose information that you have not previously saved.',
+      cancelId: 2,
+      noLink: true,
+      normalizeAccessKeys: true
+    }
+
+    dialog.showMessageBox(mainWindow, options).then(result => {
+      if (result.response === 0) { mainWindow.destroy() }
+    })
+
   })
 
 }

@@ -1,6 +1,8 @@
-// Constants for working with files and commands
+// Constants for working with files, commands and messages
 const fs = require('fs')
 const { exec } = require('child_process')
+const { remote } = require('electron')
+const dialog = remote.dialog
 
 class Editor {
 
@@ -82,13 +84,29 @@ class Editor {
                             if(err) {
                                 alert(err)
                             } else {
-                                alert('File '+ext+' saved successfully!')
+                                dialog.showMessageBox(null, {
+                                    type: 'info',
+                                    buttons: ['&Ok'],
+                                    defaultId: 0,
+                                    title: 'Live Web Editor',
+                                    message: 'File '+ext+' saved successfully!',
+                                    noLink: true,
+                                    normalizeAccessKeys: true
+                                })
                             }
                         })
                     }
                 })
             } else {
-                alert('File '+ext+' saved successfully!')
+                dialog.showMessageBox(null, {
+                    type: 'info',
+                    buttons: ['&Ok'],
+                    defaultId: 0,
+                    title: 'Live Web Editor',
+                    message: 'File '+ext+' saved successfully!',
+                    noLink: true,
+                    normalizeAccessKeys: true
+                })
             }
         })
         // Hide the dropdown
