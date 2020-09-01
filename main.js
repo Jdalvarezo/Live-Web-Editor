@@ -2,6 +2,7 @@
 const {app, BrowserWindow} = require('electron')
 
 function createWindow () {
+  
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 1366,
@@ -20,7 +21,6 @@ function createWindow () {
   mainWindow.setMenu(null)
   // maximize the application window
   mainWindow.maximize();
-
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
 
@@ -28,6 +28,14 @@ function createWindow () {
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
   })
+
+  // Open links in the default browser
+  // NOTE: Require use target="_blank" on anchor tags
+  mainWindow.webContents.on('new-window', (e, url) => {
+    e.preventDefault()
+    require('electron').shell.openExternal(url)
+  })
+
 }
 
 // This method will be called when Electron has finished

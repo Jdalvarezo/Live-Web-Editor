@@ -14,93 +14,93 @@
 //     }
 // });
 
-// Variables for working with files and commands
-var fs = require('fs');
-const { exec } = require('child_process');
+// // Variables for working with files and commands
+// var fs = require('fs');
+// const { exec } = require('child_process');
 
-// Getting the elements needed for manage the differents exportation ways
-var oneFile = document.getElementById('oneFile');
-var IndFiles = document.getElementById('IndFiles');
+// // Getting the elements needed for manage the differents exportation ways
+// var oneFile = document.getElementById('oneFile');
+// var IndFiles = document.getElementById('IndFiles');
 
-// Function that shows the exported files
-function showOutput() {
-    exec('explorer.exe output', (error, stdout, stderr) => {
-        if (error) {
-            console.error(`exec error: ${error}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
-        console.error(`stderr: ${stderr}`);
-    });
-}
+// // Function that shows the exported files
+// function showOutput() {
+//     exec('explorer.exe output', (error, stdout, stderr) => {
+//         if (error) {
+//             console.error(`exec error: ${error}`);
+//             return;
+//         }
+//         console.log(`stdout: ${stdout}`);
+//         console.error(`stderr: ${stderr}`);
+//     });
+// }
 
-// Function that exports files
-function saveFile(fileName, ext, data) {
-    fs.writeFile('output/'+fileName+'.'+ext.toLowerCase(), data, function(err) {
-        if(err) {
-            fs.mkdir('output', function(e) {
-                if(!e || (e && e.code === 'EEXIST')){ 
-                    fs.writeFile('output/'+fileName+'.'+ext.toLowerCase(), data, function(err) {
-                        if(err) {
-                            alert(err);
-                        } else {
-                            alert('File '+ext+' saved successfully!');
-                        }
-                    });
-                }
-            });
-        } else {
-            alert('File '+ext+' saved successfully!');
-        }
-    });
-    // Hide the dropdown
-    dropdown_content.style.display = "none";
-}
+// // Function that exports files
+// function saveFile(fileName, ext, data) {
+//     fs.writeFile('output/'+fileName+'.'+ext.toLowerCase(), data, function(err) {
+//         if(err) {
+//             fs.mkdir('output', function(e) {
+//                 if(!e || (e && e.code === 'EEXIST')){ 
+//                     fs.writeFile('output/'+fileName+'.'+ext.toLowerCase(), data, function(err) {
+//                         if(err) {
+//                             alert(err);
+//                         } else {
+//                             alert('File '+ext+' saved successfully!');
+//                         }
+//                     });
+//                 }
+//             });
+//         } else {
+//             alert('File '+ext+' saved successfully!');
+//         }
+//     });
+//     // Hide the dropdown
+//     dropdown_content.style.display = "none";
+// }
 
-// ============================= Save as one file =========================================
+// // ============================= Save as one file =========================================
 
-oneFile.addEventListener("click", function() {
-    // HTML exportation
-    saveFile('index', 'HTML', content);
-    // We show the export result
-    setTimeout(showOutput, 2500);
-});
+// oneFile.addEventListener("click", function() {
+//     // HTML exportation
+//     saveFile('index', 'HTML', content);
+//     // We show the export result
+//     setTimeout(showOutput, 2500);
+// });
 
-// ============================= Save as multiple files =====================================
+// // ============================= Save as multiple files =====================================
 
-IndFiles.addEventListener("click", function() {
-    // Load the needed data for text file exportation
-    var head = editorHTML.getValue().substr(0, editorHTML.getValue().indexOf("</head>")-1);
-    var style = '\n\t<link rel="stylesheet" href="style.css">';
-    var chead = '\n</head>\n';
-    var script = '\t<script src="script.js"></script>\n';
-    var endDoc = '</body>\n</html>';
+// IndFiles.addEventListener("click", function() {
+//     // Load the needed data for text file exportation
+//     var head = editorHTML.getValue().substr(0, editorHTML.getValue().indexOf("</head>")-1);
+//     var style = '\n\t<link rel="stylesheet" href="style.css">';
+//     var chead = '\n</head>\n';
+//     var script = '\t<script src="script.js"></script>\n';
+//     var endDoc = '</body>\n</html>';
     
-    var todo = head;
+//     var todo = head;
     
-    // CSS exportation
-    if (editorCSS.getValue().length > 0) {
-        todo += style;
-        saveFile('style', 'CSS', editorCSS.getValue());
-    }
+//     // CSS exportation
+//     if (editorCSS.getValue().length > 0) {
+//         todo += style;
+//         saveFile('style', 'CSS', editorCSS.getValue());
+//     }
 
-    todo += chead;
-    todo += html;
+//     todo += chead;
+//     todo += html;
 
-    // JS exportation
-    if (editorJS.getValue().length > 0) {
-        todo += script;
-        saveFile('script', 'JS', editorJS.getValue());
-    }
+//     // JS exportation
+//     if (editorJS.getValue().length > 0) {
+//         todo += script;
+//         saveFile('script', 'JS', editorJS.getValue());
+//     }
 
-    todo += endDoc;
+//     todo += endDoc;
 
-    // HTML exportation
-    saveFile('index', 'HTML', todo);
+//     // HTML exportation
+//     saveFile('index', 'HTML', todo);
 
-    // We show the export result
-    setTimeout(showOutput, 2500);
-});
+//     // We show the export result
+//     setTimeout(showOutput, 2500);
+// });
 
 // ======================== Function: show editor by tabs ============================
 
