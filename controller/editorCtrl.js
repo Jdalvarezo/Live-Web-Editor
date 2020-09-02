@@ -1,5 +1,7 @@
-// Add editor module
+// Add editor and dialog module
 const Editor = require('../../model/editor')
+const { remote } = require('electron')
+const dialog = remote.dialog
 
 class EditorCtrl {
 
@@ -27,6 +29,9 @@ class EditorCtrl {
 
         // Getting the elements needed for manage the differents exportation ways
         this.addEventsExportationMenu()
+
+        // Load events for "Blank editor" and "About" buttons
+        this.addEventForOtherMenuButtons()
     }
 
     // Shows the editor mode according the selected option
@@ -111,6 +116,29 @@ class EditorCtrl {
     addEventsExportationMenu() {
         document.getElementById('oneFile').addEventListener('click', () => { this.Editor.saveAsOneFile() })
         document.getElementById('IndFiles').addEventListener('click', () => { this.Editor.saveAsMultipleFiles() })
+    }
+
+    // Add events for buttons "About" and "Blank editor"
+    addEventForOtherMenuButtons() {
+        // Event for "About" button
+        document.getElementById('about').addEventListener('click', () => {
+            let descript = 'Project created using Electron JS\n\nDeveloper profile: https://github.com/Jdalvarezo/\nProject link: https://github.com/Jdalvarezo/Live-Web-Editor\n\n2020 - Developed by Jhonatan Alvarez'
+            dialog.showMessageBox(null, {
+                type: 'info',
+                buttons: ['&Ok'],
+                defaultId: 0,
+                title: 'About',
+                message: 'Live Web Editor v2.0.0',
+                detail: descript,
+                noLink: true,
+                normalizeAccessKeys: true
+            })
+        })
+
+        // Event for "Blank editor" button
+        document.getElementById('blankEditor').addEventListener('click', () => {
+            console.log('Click on blank editor button!')
+        })
     }
 
 }

@@ -51,11 +51,11 @@ nav span {
     position: absolute;
     background-color: #3F4652;
     width: 200px;
-    right: 5px;
+    right: 125px;
     top: 50px;
     font-size: 14px;
     padding: 5px;
-    box-shadow: -5px 5px 15px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.2);
     /* border-radius: 5px; */
     z-index: 1;
 }
@@ -86,6 +86,33 @@ nav span {
     /* color: #C6F1F3; */
     color: #47D4DA;
     transition: 0.3s;
+}
+
+.btnMenu {
+    float: right;
+    width: 125px;
+    height: 50px;
+    padding-top: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btnMenu i {
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+.btnMenu:hover {
+    background-color: rgba(0, 157, 163,0.3);
+    transition: 0.3s;
+}
+
+#blankEditor {
+    width: 150px;
+}
+
+.editorContainer {
+    background-color: #fff;
 }
 
 .tab {
@@ -137,5 +164,7 @@ nav span {
     bottom: 0;
     left: 50%;
     width: 50%;
-    height: 85.9%;
+    height: 85.7%;
+    border: none;
+    border-left: solid 1px #EBECED;
 }
