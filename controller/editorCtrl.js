@@ -89,6 +89,15 @@ class EditorCtrl {
                 dropdown_content.style.display = 'none'
             }
         })
+
+        // Event that manage the show/hide of the dropdown-content
+        dropdown_content.addEventListener('mouseleave', () => {
+            if(dropdown_content.style.display == 'block') {
+                setTimeout(() => {
+                    dropdown_content.style.display = 'none'
+                }, 250)
+            }
+        })
     }
 
     // Add event keyup for each editor

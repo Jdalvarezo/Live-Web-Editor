@@ -47,7 +47,7 @@ function createWindow () {
       defaultId: 1,
       title: 'Live Web Editor',
       message: 'Do you want to close the application?',
-      detail: 'You may lose information that you have not previously saved.',
+      detail: 'You may lose information that you have not previously saved',
       cancelId: 2,
       noLink: true,
       normalizeAccessKeys: true
