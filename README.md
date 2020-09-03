@@ -1,6 +1,7 @@
 # Live Web Editor
-Live Web Editor is a simple project that seeks to provide a simple and practical tool to all those who find themselves learning the basic languages of web technologies `(HTML, CSS and JS)`.
-Its use is simple, since with each key that we press in the editor, it will be executed instantly by the real-time viewer that is integrated in the application. This except for the `JavaScript editor block`, which is executed once the `[Enter]` key is pressed. This in order to have more comfort when executing the `scripts`, since it would be very annoying if letter by letter were to run executing the entered code. Different case for `HTML` and` CSS` that does need to be executed instantly on each code letter we write.
+Live Web Editor is a project that offers a simple, fast and practical tool to all those who develop in/or are learning the basic languages of web technologies `(HTML, CSS and JS)`.
+Its use is simple, since with each key that we press in the editor, it will be instantly executed by the real-time viewer that is integrated into the application.
+It also contains an export menu both to `multiple files` and to a `single file`, along with the option to quickly start a code from scratch.
 
 ![demo.jpg](https://github.com/Jdalvarezo/Live-Web-Editor/blob/master/demo.png)
 

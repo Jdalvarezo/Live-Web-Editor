@@ -22,7 +22,7 @@ function createWindow () {
   // maximize the application window
   mainWindow.maximize();
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   // Displays the window once all components have loaded
   mainWindow.once('ready-to-show', () => {

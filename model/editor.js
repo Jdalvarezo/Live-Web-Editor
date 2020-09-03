@@ -171,6 +171,31 @@ class Editor {
 
     }
 
+    // Set blank editor method
+    setBlankEditor() {
+        
+        // Setting content for HTML editor
+        let htmlDoc = '<!DOCTYPE html>\n<html>\n<head>\n\t<meta charset="UTF-8">\n\t<title>LWE</title>\n</head>\n<body>\n\t\n</body>\n</html>'
+        this.editorHTML.setValue(htmlDoc)
+        this.editorHTML.gotoLine(8, 2)
+        this.editorHTML.focus()
+
+        // Setting content for CSS editor
+        this.editorCSS.setValue('')
+        this.editorCSS.gotoLine(1)
+        this.editorCSS.focus()
+        
+
+        // Setting content for JS editor
+        this.editorJS.setValue('')
+        this.editorJS.gotoLine(1)
+        this.editorJS.focus()
+
+        // Load changes
+        this.type()
+
+    }
+
 }
 
 module.exports = Editor

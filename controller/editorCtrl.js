@@ -137,7 +137,7 @@ class EditorCtrl {
 
         // Event for "Blank editor" button
         document.getElementById('blankEditor').addEventListener('click', () => {
-            console.log('Click on blank editor button!')
+            this.Editor.setBlankEditor()
         })
     }
 
