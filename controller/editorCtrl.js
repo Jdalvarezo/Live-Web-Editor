@@ -128,7 +128,7 @@ class EditorCtrl {
                 buttons: ['&Ok'],
                 defaultId: 0,
                 title: 'About',
-                message: 'Live Web Editor v2.0.0',
+                message: 'Live Web Editor v2.0.1',
                 detail: descript,
                 noLink: true,
                 normalizeAccessKeys: true

@@ -1,6 +1,6 @@
 {
   "name": "live-web-editor",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A live web editor for HTML, CSS and JS. Developed with web technologies using the framework Electron JS",
   "main": "main.js",
   "scripts": {
@@ -48,7 +48,7 @@
     }
   },
   "devDependencies": {
-    "electron": "^9.2.1",
-    "electron-builder": "^22.8.0"
+    "electron": "^11.1.1",
+    "electron-builder": "^22.9.1"
   }
 }
